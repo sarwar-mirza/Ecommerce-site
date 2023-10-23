@@ -40,6 +40,7 @@ class Product(models.Model):
     title = models.CharField(max_length=100)
     selling_price = models.FloatField()
     discount_price = models.FloatField()
+    descriptions = models.TextField()
     brand = models.CharField(max_length=100)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=5)
     product_image = models.ImageField(upload_to='productimg')

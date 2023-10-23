@@ -10,7 +10,7 @@ class CustomerModelAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductModelAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'selling_price', 'discount_price', 'brand', 'category', 'product_image']
+    list_display = ['id', 'title', 'selling_price', 'discount_price','descriptions', 'brand', 'category', 'product_image']
 
 
 @admin.register(Cart)
