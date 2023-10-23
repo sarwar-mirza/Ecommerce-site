@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Bootstrap css-->
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+
+    <!--Carousel css-->
+    <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css' %}">
+
+    <!--Fontawesome css-->
+    <link rel="stylesheet" href="{% static 'app/css/fontawesome.css' %}">
+
+    <!--Custom css-->
+
+    <title>Throwing | {% block title %} {% endblock title %} </title>
+
+
+</head>
+<body>
+    
+    
+    <!--NAVBAR-->
+    
+
+
+    <!--main-->
+    <main>
+        {% block banner_slider %} {% endblock banner_slider %}
+        {% block livesale %} {% endblock livesale %}
+        {% block content %} {% endblock content %}
+    </main>
+
+    <!--Jquery, popper, bootstrap, carousel, fontawesom JavaScript-->
+    <script src="{% static 'app/js/jquery.js' %}"></script>
+    <script src="{% static 'app/js/popper.js' %}"></script>
+    <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'app/js/all.min.js' %}"></script>            <!--fontawesome-->
+</body>
+</html>
