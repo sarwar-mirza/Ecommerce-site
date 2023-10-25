@@ -12,6 +12,10 @@ urlpatterns = [
     path('baseball/', views.baseball, name='baseball'),
     path('baseballdata/<slug:data>/', views.baseball, name='baseballdata'),
 
+    path('football/', views.football, name='football'),
+    path('footballdata/<slug:data>/', views.football, name='footballdata'),
+
+    
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

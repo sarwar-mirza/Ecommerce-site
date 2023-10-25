@@ -41,3 +41,20 @@ def baseball(request, data=None):
     return render(request, 'app/baseball.html', {'baseball': baseball})
 
 
+
+# SPECIFIC FILTER FOOTBALL PRODUCT IN BRAND 
+
+def football(request, data=None):
+    
+    if data == None:
+      football = Product.objects.filter(category='F')
+    elif data == 'adidas' or data == 'Nike' or data == 'Easton':
+       football = Product.objects.filter(category='F').filter(brand=data)
+    
+    elif data == 'bellow':
+        football = Product.objects.filter(category='F').filter(discount_price__lt= 90)
+    elif data == 'above':
+        football = Product.objects.filter(category='F').filter(discount_price__gte= 100)
+    return render(request, 'app/football.html', {'football': football})
+
+
