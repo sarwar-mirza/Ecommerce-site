@@ -1,46 +1,46 @@
 {% extends 'app/base.html' %}
 {% load static %}
 
-<main>
-    {% block banner_slider %}
-    <!--Banner Slider-->
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{% static 'app/assets/banner/banner13.jpg' %}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'app/assets/banner/banner11.jpg' %}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'app/assets/banner/banner12.jpg' %}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'app/assets/banner/banner10.jpg' %}" class="d-block w-100" alt="...">
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </a>
-        </div>
-    </div>
-    <!-- End Banner Slider -->
-    {% endblock banner_slider %}
 
-    {% block livesale %} 
-    <!-- Live Sale Section -->
-    <div class="container">
-        <div class="row bg-danger text-center p-5 text-white border-bottom shadow">
-            <h1>SALE IS LIVE NOW</h1>
-            <span>5% Instant Discount on City Bank Credit and Debit Card</span>
-            <small class="fw-lighter">Term and Condition Applied (For details visit Bank's official Website)</small>
-        </div>
-    </div> 
+{% block banner_slider %}
+<!--Banner Slider-->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'app/assets/banner/banner13.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/assets/banner/banner11.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/assets/banner/banner12.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/assets/banner/banner10.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+
+</div>
+<!-- End Banner Slider -->
+{% endblock banner_slider %}
+
+{% block livesale %}
+<!-- Live Sale Section -->
+<div class="container">
+  <div class="row bg-danger text-center p-5 text-white border-bottom shadow">
+    <h1>SALE IS LIVE NOW</h1>
+    <span>5% Instant Discount on City Bank Credit and Debit Card</span>
+    <small class="fw-lighter">Term and Condition Applied (For details visit Bank's official Website)</small>
+  </div>
+</div>
 <!-- End Live Sale Section -->
 
 {% endblock livesale %}
@@ -48,7 +48,7 @@
 
 {% block content %}
 
-<!--Baseball start -1st product slider--> 
+<!--Baseball start -1st product slider-->
 <div class="m-3">
   <h2>Throwing | BaseBall Jersey </h2>
   <!--Slider 1-->
@@ -62,10 +62,87 @@
       </div>
     </a>
     {% endfor %}
-    
+
   </div>
 </div>
-<!--Baseball End--> 
+<!--Baseball End-->
+
+
+<!-- Payment Info Section -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'app/assets/paybill/b5.jpg' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'app/assets/paybill/b2.png' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'app/assets/paybill/b5.jpg' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img src="{% static 'app/assets/paybill/b2.png' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Payment Info Section -->
+
+
+
+<!--Football start -2nd product slider-->
+<div class="m-3">
+  <h2>Throwing | Football Jersey </h2>
+  <!--Slider 1-->
+  <div class="owl-carousel" id="slider2">
+
+    {% for f in football %}
+    <a href="{% url 'product-detail' f.id %}" class="btn">
+      <div class="item"><img src="{{ f.product_image.url }}" alt="" srcset="" height="200px">
+        <span class="fw-bold">{{ f.title }}</span> <br>
+        <span class="fs-5">Tk. {{ f.discount_price }}</span>
+      </div>
+    </a>
+    {% endfor %}
+
+  </div>
+</div>
+<!--Football End-->
+
+
+
+<!--Cricket start -3rd product slider-->
+<div class="m-3">
+  <h2>Throwing | Cricket Jersey </h2>
+  <!--Slider 1-->
+  <div class="owl-carousel" id="slider3">
+
+    {% for c in cricket %}
+    <a href="{% url 'product-detail' c.id %}" class="btn">
+      <div class="item"><img src="{{ c.product_image.url }}" alt="" srcset="" height="200px">
+        <span class="fw-bold">{{ c.title }}</span> <br>
+        <span class="fs-5">Tk. {{ c.discount_price }}</span>
+      </div>
+    </a>
+    {% endfor %}
+
+  </div>
+</div>
+<!--FCricket End-->
 
 {% endblock content %}
-</main>
