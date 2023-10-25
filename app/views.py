@@ -16,3 +16,10 @@ class ProductHomeView(View):
     
 
 
+
+#PTODUCT DETAIL VIEW
+class ProductDetailView(View):
+    def get(self, request, pk):
+        product = Product.objects.get(pk=pk)
+        
+        return render(request, 'app/productdetail.html', {'product': product})
