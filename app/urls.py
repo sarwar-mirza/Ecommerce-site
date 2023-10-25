@@ -15,6 +15,11 @@ urlpatterns = [
     path('football/', views.football, name='football'),
     path('footballdata/<slug:data>/', views.football, name='footballdata'),
 
+    path('cricket/', views.cricket, name='cricket'),
+    path('cricketdata/<slug:data>/', views.cricket, name='cricketdata'),
+
+    path('allproduct/', views.allproduct, name='allproduct'),
+
     
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

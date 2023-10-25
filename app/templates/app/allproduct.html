@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}All Product {% endblock title %}
+
+{% block content %}
+<div class="row">
+    {% for product in allproduct %}
+
+    <div class="card mx-2 my-2" style="width: 18rem;">
+        <a href="{% url 'product-detail' product.id %}" class="btn">
+            <img src="{{product.product_image.url}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{product.title}}</h5>
+                <div class="fw-bold">Tk. {{product.discount_price}}
+                    <small class="fw-light text-decoration-line-through"> {{product.selling_price}}</small>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock content %}

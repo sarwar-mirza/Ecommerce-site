@@ -58,3 +58,25 @@ def football(request, data=None):
     return render(request, 'app/football.html', {'football': football})
 
 
+
+# SPECIFIC FILTER CRICKET PRODUCT IN BRAND 
+
+def cricket(request, data=None):
+    
+    if data == None:
+      cricket = Product.objects.filter(category='C')
+    elif data == 'adidas' or data == 'Easy':
+       cricket = Product.objects.filter(category='C').filter(brand=data)
+    
+    elif data == 'bellow':
+        cricket = Product.objects.filter(category='C').filter(discount_price__lt= 90)
+    elif data == 'above':
+        cricket = Product.objects.filter(category='C').filter(discount_price__gte= 100)
+    return render(request, 'app/cricket.html', {'cricket': cricket})
+
+
+# ALL PRODUCT 
+def allproduct(request):
+    allprod = Product.objects.all()
+    return render(request, 'app/allproduct.html', {'allproduct':allprod})
+
