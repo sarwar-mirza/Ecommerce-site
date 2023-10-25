@@ -23,3 +23,21 @@ class ProductDetailView(View):
         product = Product.objects.get(pk=pk)
         
         return render(request, 'app/productdetail.html', {'product': product})
+
+
+# SPECIFIC FILTER BASEBALL PRODUCT IN BRAND 
+
+def baseball(request, data=None):
+    
+    if data == None:
+      baseball = Product.objects.filter(category='B')
+    elif data == 'adidas' or data == 'Nike' or data == 'Easton':
+       baseball = Product.objects.filter(category='B').filter(brand=data)
+    
+    elif data == 'bellow':
+        baseball = Product.objects.filter(category='B').filter(discount_price__lt= 90)
+    elif data == 'above':
+        baseball = Product.objects.filter(category='B').filter(discount_price__gt= 100)
+    return render(request, 'app/baseball.html', {'baseball': baseball})
+
+

@@ -1,0 +1,61 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}BaseBall Page {% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a href="{% url 'baseball' %}" class="list-group-item list-group-item-action active" aria-current="true">
+                    Baseball Jersey
+                </a>
+
+                <a href="{% url 'baseballdata' 'adidas' %}" class="list-group-item list-group-item-action" aria-current="true">
+                    adidas
+                </a>
+
+                <a href="{% url 'baseballdata' 'Nike' %}" class="list-group-item list-group-item-action" aria-current="true">
+                    Nike
+                </a>
+
+                <a href="{% url 'baseballdata' 'Easton' %}" class="list-group-item list-group-item-action" aria-current="true">
+                    Easton
+                </a>
+
+                <a href="{% url 'baseballdata' 'bellow' %}" class="list-group-item list-group-item-action" aria-current="true">
+                    Bellow
+                </a>
+                
+                <a href="{% url 'baseballdata' 'above' %}" class="list-group-item list-group-item-action" aria-current="true">
+                    Above
+                </a>
+
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="row">
+                {% for product in baseball %}
+
+                <div class="card mx-2 my-2" style="width: 18rem;">
+                    <a href="{% url 'product-detail' product.id %}" class="btn">
+                        <img src="{{product.product_image.url}}" class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{product.title}}</h5>
+                            <div class="fw-bold">Tk. {{product.discount_price}}
+                                <small class="fw-light text-decoration-line-through"> {{product.selling_price}}</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
