@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views import View
-from .models import Customer, Product, Cart, OderPlaced
+from .models import Customer, Product, Cart, OderPlaced, User
+from .forms import CustomerRegistrationForm
+from django.contrib import messages
 
 
 
@@ -79,4 +81,23 @@ def cricket(request, data=None):
 def allproduct(request):
     allprod = Product.objects.all()
     return render(request, 'app/allproduct.html', {'allproduct':allprod})
+
+
+
+#CUSTOMER REGISTRATION FORM 
+
+class RegistrationFormView(View):
+    def get(self, request):
+        fm = CustomerRegistrationForm()
+        return render(request, 'app/registrationform.html', {'form':fm})
+    
+    def post(self, request):
+        fm = CustomerRegistrationForm(request.POST)
+
+        if fm.is_valid():
+            messages.success(request, "Congratulations your account has been created successfully !!!")
+            fm.save()
+
+        return render(request, 'app/registrationform.html', {'form':fm})
+
 

@@ -21,6 +21,9 @@ urlpatterns = [
     path('allproduct/', views.allproduct, name='allproduct'),
 
     
+    path('registration/', views.RegistrationFormView.as_view(), name='registration'),
+
+    
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
