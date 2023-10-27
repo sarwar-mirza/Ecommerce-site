@@ -1,35 +1,30 @@
 {% extends 'app/base.html' %}
 {% load static %}
 
-{% block title %}Registration Form{% endblock title %}
+{% block title %}Login Page {% endblock title %}
 
 {% block content %}
 <div class="container">
     <div class="row my-3">
         <div class="col-sm-6 offset-sm-3">
-            <h3>Registration Form</h3>
+            <h3>Sign in</h3>
             <hr>
             <form action="" method="POST" novalidate class="shadow p-5">
                 {% csrf_token %}
-               
-                <!--MESSAGE FRAMEWORK-->
-                {% if messages %}
-                {% for message in messages %}
-                <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
-                {% endfor %}
-                {% endif %}
 
-                
                 {% for fm in form %}
                 <div class="form-group mb-3">
                     {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
                 </div>
                 {% endfor %}
-                <input type="submit" value="Continue" class="btn btn-primary"> <br>
+                <small><a href="">Forget Password</a></small> <br> <br>
 
-                <div class="text-center text-primary fw-bold"><small>Existing user? <a href="{% url 'login' %}" class="text-danger">Login Now</a></small>
+                <input type="submit" value="Login" class="btn btn-primary"> <br>
+
+
+                <div class="text-center text-primary fw-bold"><small>New to Throwing? <a href="{% url 'registration' %}" class="text-danger">Create Your Throwing account</a></small>
                 </div>
-                
+
                 <!--NON FORM FIELD ERRORS-->
                 {% if form.non_field_errors %}
                 {% for error in form.non_field_errors %}
@@ -42,3 +37,5 @@
     </div>
 </div>
 {% endblock content %}
+
+
