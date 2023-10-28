@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.utils.translation import gettext_lazy as _
-
+from .models import Customer
 
 
 class CustomerRegistrationForm(UserCreationForm):
@@ -32,6 +32,23 @@ class UserLoginForm(AuthenticationForm):
         strip=False,
         widget=forms.PasswordInput(attrs={"autocomplete": "current-password", "class": "form-control"}),
     )
+
+
+
+# PROFILE Form
+class CustomerProfileForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ['name', 'aria', 'city', 'zipcode', 'division']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'aria': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'division': forms.Select(attrs={'class': 'form-control'}),
+            'zipcode': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+
 
 
 

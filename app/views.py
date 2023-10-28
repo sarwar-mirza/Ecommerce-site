@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from .models import Customer, Product, Cart, OderPlaced, User
-from .forms import CustomerRegistrationForm
+from .forms import CustomerRegistrationForm, CustomerProfileForm
 from django.contrib import messages
 
 
@@ -99,5 +99,29 @@ class RegistrationFormView(View):
             fm.save()
 
         return render(request, 'app/registrationform.html', {'form':fm})
+
+
+#CUSTOMER PROFILE 
+class UserProfileView(View):
+    def get(self, request):
+        fm = CustomerProfileForm()
+        return render(request, 'app/profile.html', {'form': fm, 'active': 'btn-primary'})
+    
+    def post(self, request):
+        fm = CustomerProfileForm(request.POST)
+
+        if fm.is_valid():
+            usr = request.user
+            name = fm.cleaned_data['name']
+            aria = fm.cleaned_data['aria']
+            city = fm.cleaned_data['city']
+            zipcode = fm.cleaned_data['zipcode']
+            division = fm.cleaned_data['division']
+
+            regi = Customer(user=usr, name=name, aria=aria, city=city, zipcode=zipcode, division=division)
+            regi.save()
+            messages.success(request, 'Congratulations your profile has been update successfully !!!')
+        return render(request, 'app/profile.html', {'form': fm, 'active': 'btn-primary'})
+
 
 
