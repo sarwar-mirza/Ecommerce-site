@@ -32,6 +32,10 @@ urlpatterns = [
 
     path('address/', views.AddressView.as_view(), name='address'),
 
+    path('logout/', auth_view.LogoutView.as_view(next_page='login'), name='logout'),   # Logout
+
+
+
     
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
