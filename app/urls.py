@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.contrib.auth import views as auth_view
-from .forms import UserLoginForm
+from .forms import UserLoginForm, UserChangePasswordForm
 
 
 urlpatterns = [
@@ -35,7 +35,8 @@ urlpatterns = [
     path('logout/', auth_view.LogoutView.as_view(next_page='login'), name='logout'),   # Logout
 
 
-
+    path('changepassword/', auth_view.PasswordChangeView.as_view(template_name = 'app/changepassword.html', form_class = UserChangePasswordForm), name='changepassword'),
+    
     
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
