@@ -125,3 +125,12 @@ class UserProfileView(View):
 
 
 
+#ADDRESS VIEW
+class AddressView(View):
+    def get(self, request):
+        add = Customer.objects.filter(user=request.user)
+        return render(request, 'app/address.html', {'address': add, 'active': 'btn-primary'})
+    
+
+
+

@@ -30,6 +30,8 @@ urlpatterns = [
 
     path('profile/', views.UserProfileView.as_view(), name='profile'),
 
+    path('address/', views.AddressView.as_view(), name='address'),
+
     
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
