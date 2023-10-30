@@ -35,8 +35,10 @@ urlpatterns = [
     path('logout/', auth_view.LogoutView.as_view(next_page='login'), name='logout'),   # Logout
 
 
-    path('changepassword/', auth_view.PasswordChangeView.as_view(template_name = 'app/changepassword.html', form_class = UserChangePasswordForm), name='changepassword'),
+    path('changepassword/', auth_view.PasswordChangeView.as_view(template_name = 'app/changepassword.html', form_class = UserChangePasswordForm, success_url='/passwordchangedone/'), name='changepassword'),
+    path('passwordchangedone/', auth_view.PasswordChangeDoneView.as_view(template_name = 'app/changepassworddone.html'), name='changepassworddone'),
     
+
     
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
