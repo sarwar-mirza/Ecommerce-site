@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.contrib.auth import views as auth_view
-from .forms import UserLoginForm, UserChangePasswordForm
+from .forms import UserLoginForm, UserChangePasswordForm, UserPasswordResetForm
 
 
 urlpatterns = [
@@ -39,7 +39,7 @@ urlpatterns = [
     path('passwordchangedone/', auth_view.PasswordChangeDoneView.as_view(template_name = 'app/changepassworddone.html'), name='changepassworddone'),
     
 
-    
+    path('password-reset/', auth_view.PasswordResetView.as_view(template_name = 'app/password_reset.html', form_class = UserPasswordResetForm), name='passwor_reset'),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

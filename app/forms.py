@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm, PasswordResetForm
 from django.utils.translation import gettext_lazy as _
 from .models import Customer
 from django.contrib.auth import password_validation
@@ -79,6 +79,16 @@ class UserChangePasswordForm(PasswordChangeForm):
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password", 'class': 'form-control'}),
         strip=False,
         help_text=_("Enter the same password as before, for verification."),
+    )
+
+
+
+#PASSWORD RESET FORM
+class UserPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(
+        label=_("Email"),
+        max_length=254,
+        widget=forms.EmailInput(attrs={"autocomplete": "email", "class": "form-control"}),
     )
 
 
