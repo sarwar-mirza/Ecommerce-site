@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import Customer, Product, Cart, OderPlaced, User
 from .forms import CustomerRegistrationForm, CustomerProfileForm
@@ -130,6 +130,39 @@ class AddressView(View):
     def get(self, request):
         add = Customer.objects.filter(user=request.user)
         return render(request, 'app/address.html', {'address': add, 'active': 'btn-primary'})
+    
+
+
+#ADD TO CART REDIRECT SHOW CART
+def add_to_cart(request):
+    user = request.user
+    product_id = request.GET.get('prod_id')
+    product = Product.objects.get(id=product_id)
+
+    Cart(user=user, product=product).save()      # authenticate user & product id save
+
+    return redirect('/cart')
+
+
+# SHOW CART (total calculation )
+def show_cart(request):
+    user = request.user
+    cart = Cart.objects.filter(user=user)
+
+    amount = 0.0
+    shipping_amount = 70.0
+    total_amount = 0.0
+    cart_product = [p for p in Cart.objects.all() if p.user == user]
+
+    if cart_product:
+        for p in cart_product:
+            tempamount = (p.quantity * p.product.discount_price)
+            amount += tempamount
+            totalamount = amount + shipping_amount
+        return render(request, 'app/add_show_cart.html', {'carts':cart, 'totalamount': totalamount, 'amount': amount})
+    
+    else:
+        return render(request, 'app/emptycart.html')
     
 
 
