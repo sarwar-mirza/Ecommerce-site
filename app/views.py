@@ -272,4 +272,19 @@ def checkout(request):
     return render(request, 'app/checkout.html', {'add': add, 'cart_items': cart_items, 'totalamount': totalamount})
 
 
+#PAYMENT-DONE
+def payment_done(request):
+    user = request.user
+    custid = request.GET.get('custid')                   # Accepting Custid when passing HTML file
+    customer = Customer.objects.get(id=custid)
+    cart_items = Cart.objects.filter(user=user)
+
+    for c in cart_items:
+        OderPlaced(user=user, customer=customer, product=c.product, quantity=c.quantity).save()     # Cart data in OrderPlaced database storage
+
+        c.delete()                                  # Cart data is deleted after passing
+    return redirect("checkout")
+
+
+
     
