@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.db.models import Q
 from django.http import JsonResponse
 
+from django.contrib.auth.decorators import login_required    # function based
+from django.utils.decorators import method_decorator         # class based 
+
 
 # HOME CLASS VIEW INHERITE VIEW FILE
 class ProductHomeView(View):
@@ -103,6 +106,8 @@ class RegistrationFormView(View):
 
 
 #CUSTOMER PROFILE 
+
+@method_decorator(login_required, name='dispatch')
 class UserProfileView(View):
     def get(self, request):
         fm = CustomerProfileForm()
@@ -127,6 +132,8 @@ class UserProfileView(View):
 
 
 #ADDRESS VIEW
+
+@method_decorator(login_required, name='dispatch')
 class AddressView(View):
     def get(self, request):
         add = Customer.objects.filter(user=request.user)
@@ -135,6 +142,8 @@ class AddressView(View):
 
 
 #ADD TO CART REDIRECT SHOW CART
+
+@login_required
 def add_to_cart(request):
     user = request.user
     product_id = request.GET.get('prod_id')
@@ -146,6 +155,8 @@ def add_to_cart(request):
 
 
 # SHOW CART (total calculation)
+
+@login_required
 def show_cart(request):
     user = request.user
     cart = Cart.objects.filter(user=user)
@@ -252,6 +263,8 @@ def remove_cart(request):
 
     
 #CHECKOUT
+
+@login_required
 def checkout(request):
     user = request.user
     add = Customer.objects.filter(user=user)
@@ -273,6 +286,8 @@ def checkout(request):
 
 
 #PAYMENT-DONE
+
+@login_required
 def payment_done(request):
     user = request.user
     custid = request.GET.get('custid')                   # Accepting Custid when passing HTML file
@@ -288,6 +303,8 @@ def payment_done(request):
 
 
 #ORDER_PLACED
+
+@login_required
 def order_placed(request):
     op = OderPlaced.objects.filter(user=request.user)
 
