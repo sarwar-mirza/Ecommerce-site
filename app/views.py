@@ -283,7 +283,20 @@ def payment_done(request):
         OderPlaced(user=user, customer=customer, product=c.product, quantity=c.quantity).save()     # Cart data in OrderPlaced database storage
 
         c.delete()                                  # Cart data is deleted after passing
-    return redirect("checkout")
+    return redirect("orders")
+
+
+
+#ORDER_PLACED
+def order_placed(request):
+    op = OderPlaced.objects.filter(user=request.user)
+
+    return render(request, 'app/orders.html', {'order_placed': op})
+
+
+
+
+
 
 
 

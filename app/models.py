@@ -88,5 +88,12 @@ class OderPlaced(models.Model):
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Pending')
 
 
+    @property                              #SPECIFIC PRODUCT TOTAL COST
+    def total_cost(self):
+        return self.quantity * self.product.discount_price
+    
+
+
+
 
 
