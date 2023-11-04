@@ -28,7 +28,10 @@ class ProductDetailView(View):
     def get(self, request, pk):
         product = Product.objects.get(pk=pk)
         
-        return render(request, 'app/productdetail.html', {'product': product})
+        item_already_in_cart = False     # This product already exist so go-to-cart show instead of add-t0-cart
+        item_already_in_cart = Cart.objects.filter(Q(product=product.id) & Q(user=request.user)).exists()
+        
+        return render(request, 'app/productdetail.html', {'product': product, 'item_already_in_cart': item_already_in_cart})
 
 
 # SPECIFIC FILTER BASEBALL PRODUCT IN BRAND 
