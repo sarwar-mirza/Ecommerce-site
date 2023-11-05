@@ -27,7 +27,7 @@ class ProductHomeView(View):
 class ProductDetailView(View):
     def get(self, request, pk):
         product = Product.objects.get(pk=pk)
-        
+        #this line go-to-cart
         return render(request, 'app/productdetail.html', {'product': product})
 
 
